@@ -11,25 +11,11 @@
                     placeholder="Search for bears"
                     value={searchTerm}>
                 </lightning-input>
-				<lightning-layout multiple-rows="true" pull-to-boundary="small">
+				<lightning-layout multiple-rows="true" pull-to-boundary="small" onbearview={handleBearView}>
 					<template for:each={bears.data} for:item="bear">
 						<lightning-layout-item key={bear.Id} size="3" class="slds-p-around_x-small">
 							<!-- Start bear tile -->
-							<lightning-card title={bear.Name} class="bear-tile">
-								<div class="slds-p-horizontal_small">
-									<div class="slds-media">
-										<div class="slds-media__figure">
-											<img src={appResources.bearSilhouette} alt="Bear profile" class="bear-silhouette"/>
-										</div>
-										<div class="slds-media__body">
-											<p class="slds-m-bottom_xx-small">{bear.Sex__c}</p>
-											<p class="slds-m-bottom_xx-small">{bear.Age__c} years old</p>
-											<p class="slds-m-bottom_xx-small">{bear.Height__c} cm</p>
-											<p class="slds-m-bottom_xx-small">{bear.Weight__c} Kg</p>
-										</div>
-									</div>
-								</div>
-							</lightning-card>
+							<c-bear-tile bear={bear}></c-bear-tile>
 							<!-- End bear tile -->
 						</lightning-layout-item>
 					</template>
@@ -37,7 +23,7 @@
                 <!-- No bears found -->
 <template if:false={hasResults}>
         <div class="slds-align_absolute-center slds-m-vertical_small">
-            This is beary disturbing, we did not find results...
+            This is beary disturbing, we did not find results check again...
         </div>
     </template>
 			</template>
